@@ -1,0 +1,860 @@
+/* =========================
+   BrainBlast Quiz Styles
+   I wanted the website to have
+   a dark cinematic feeling
+========================= */
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface-light: #1c1c28;
+
+  --accent: #f0c040;
+  --accent-orange: #e05c2a;
+
+  --text: #f0ede8;
+  --text-muted: #888;
+
+  --correct: #3ddc84;
+  --wrong: #ff4d6d;
+
+  --radius: 14px;
+  --small-radius: 8px;
+
+  --transition-speed: 0.25s ease;
+
+  --heading-font: 'Georgia', 'Times New Roman', serif;
+  --body-font: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+/* basic reset - clears browser default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =========================
+   Navigation Bar
+========================= */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #0a0a0fcc;
+  border-bottom: 1px solid #ffffff10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.nav-brand {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+  transition: color var(--transition-speed);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent);
+}
+
+/* =========================
+   Utility
+========================= */
+
+/* toggles visibility between pages */
+.hidden {
+  display: none !important;
+}
+
+.page {
+  display: block;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: #0a0a0f;
+  border: none;
+  border-radius: var(--small-radius);
+  padding: 0.85rem 2.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--body-font);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px #f0c04044;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  /* make sure it doesn't lift when disabled */
+  transform: none;
+  box-shadow: none;
+}
+
+/* ghost / secondary button */
+.btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid #ffffff22;
+  border-radius: var(--small-radius);
+  padding: 0.85rem 2.2rem;
+  font-size: 1rem;
+  font-family: var(--body-font);
+  cursor: pointer;
+  transition: border-color var(--transition-speed), color var(--transition-speed);
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* =========================
+   Home Page
+========================= */
+
+.home-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero {
+  text-align: center;
+  max-width: 640px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.7s ease both;
+}
+
+/* small pill badge above the title */
+.hero-badge {
+  display: inline-block;
+  background: #f0c04020;
+  border: 1px solid #f0c04040;
+  color: var(--accent);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: var(--heading-font);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+
+.hero-title .accent {
+  color: var(--accent);
+}
+
+.hero-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 2.2rem auto;
+}
+
+/* the three stats in a row */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.4rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-family: var(--heading-font);
+  font-size: 1.8rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* vertical line between stats */
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background: #ffffff18;
+}
+
+/* home page buttons sit side by side */
+.home-page .btn-ghost {
+  margin-left: 1rem;
+  margin-top: 0.8rem;
+}
+
+/* =========================
+   Background rings on home
+========================= */
+
+/* purely decorative - just looks nice */
+.hero-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid #f0c04012;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.r1 { width: 340px; height: 340px; }
+.r2 { width: 560px; height: 560px; animation-delay: 1s; border-color: #e05c2a0a; }
+.r3 { width: 800px; height: 800px; animation-delay: 2s; }
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* =========================
+   Quiz Page
+========================= */
+
+.quiz-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  animation: fadeUp 0.4s ease both;
+}
+
+.quiz-header {
+  margin-bottom: 2rem;
+}
+
+.q-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+#q-counter {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* badge showing question type */
+#q-type-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  background: #f0c04020;
+  color: var(--accent);
+  border: 1px solid #f0c04030;
+}
+
+.progress-bar-wrap {
+  height: 5px;
+  background: #ffffff10;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-orange), var(--accent));
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* =========================
+   Quiz Card
+========================= */
+
+.quiz-card {
+  background: var(--surface);
+  border: 1px solid #ffffff0d;
+  border-radius: var(--radius);
+  padding: 2.4rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.question-text {
+  font-family: var(--heading-font);
+  font-size: clamp(1.05rem, 3vw, 1.35rem);
+  line-height: 1.55;
+  margin-bottom: 1.8rem;
+}
+
+/* 2 column grid for answer options */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.option-btn {
+  background: var(--surface-light);
+  border: 1px solid #ffffff14;
+  border-radius: var(--small-radius);
+  color: var(--text);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  font-family: var(--body-font);
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-speed),
+    background var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: #f0c04010;
+  transform: translateY(-1px);
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* correct answer highlight */
+.option-btn.correct {
+  border-color: var(--correct);
+  background: #3ddc8420;
+  color: var(--correct);
+}
+
+/* wrong answer highlight */
+.option-btn.incorrect {
+  border-color: var(--wrong);
+  background: #ff4d6d18;
+  color: var(--wrong);
+}
+
+/* shows the right answer when user picked wrong */
+.option-btn.reveal {
+  border-color: var(--correct);
+  background: #3ddc8420;
+  color: var(--correct);
+}
+
+/* =========================
+   Fill in the Blank
+========================= */
+
+.fitb-wrap {
+  margin-bottom: 0.5rem;
+}
+
+.fitb-input {
+  width: 100%;
+  background: var(--surface-light);
+  border: 1px solid #ffffff18;
+  border-radius: var(--small-radius);
+  color: var(--text);
+  font-family: var(--body-font);
+  font-size: 1rem;
+  padding: 0.9rem 1.1rem;
+  outline: none;
+  transition: border-color var(--transition-speed);
+}
+
+.fitb-input:focus {
+  border-color: var(--accent);
+}
+
+.fitb-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =========================
+   Feedback Box
+========================= */
+
+.feedback-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--small-radius);
+  border: 1px solid transparent;
+  animation: fadeUp 0.3s ease both;
+}
+
+.feedback-box.correct-fb {
+  background: #3ddc8415;
+  border-color: #3ddc8430;
+}
+
+.feedback-box.incorrect-fb {
+  background: #ff4d6d12;
+  border-color: #ff4d6d28;
+}
+
+#feedback-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+#feedback-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* =========================
+   Quiz Nav Bar
+========================= */
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#score-live {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* =========================
+   Results Page
+========================= */
+
+.results-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeUp 0.5s ease both;
+}
+
+.results-card {
+  background: var(--surface);
+  border: 1px solid #ffffff0d;
+  border-radius: var(--radius);
+  padding: 2.8rem 2.4rem;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.results-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+}
+
+.results-title {
+  font-family: var(--heading-font);
+  font-size: 1.8rem;
+  margin-bottom: 1.6rem;
+}
+
+/* SVG score ring */
+.results-score-ring {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 1.2rem;
+}
+
+.ring-svg {
+  width: 130px;
+  height: 130px;
+  /* rotate so the ring starts from the top */
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #ffffff10;
+  stroke-width: 10;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  transition: stroke-dashoffset 1.2s ease;
+}
+
+.ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#ring-num {
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.ring-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.results-pct {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* answer breakdown list */
+.results-breakdown {
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-right: 0.3rem;
+}
+
+/* custom scrollbar - just looks cleaner */
+.results-breakdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.results-breakdown::-webkit-scrollbar-thumb {
+  background: #ffffff20;
+  border-radius: 999px;
+}
+
+.breakdown-item {
+  background: var(--surface-light);
+  border-radius: var(--small-radius);
+  padding: 0.9rem 1rem;
+  border-left: 3px solid transparent;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.breakdown-item.bd-correct {
+  border-color: var(--correct);
+}
+
+.breakdown-item.bd-incorrect {
+  border-color: var(--wrong);
+}
+
+.breakdown-item .bd-q {
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.breakdown-item .bd-a {
+  color: var(--text-muted);
+}
+
+.bd-correct-ans {
+  color: var(--correct);
+}
+
+.results-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   How To Page
+========================= */
+
+.howto-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  animation: fadeUp 0.5s ease both;
+}
+
+.howto-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.howto-header h1 {
+  font-family: var(--heading-font);
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.7rem;
+}
+
+.howto-intro {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* grid of instruction cards */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.3rem;
+  margin-bottom: 3rem;
+}
+
+.step-card {
+  background: var(--surface);
+  border: 1px solid #ffffff0d;
+  border-radius: var(--radius);
+  padding: 1.8rem 1.6rem;
+  position: relative;
+  transition: border-color var(--transition-speed);
+}
+
+.step-card:hover {
+  border-color: #f0c04030;
+}
+
+/* big faded number in the corner */
+.step-num {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  font-family: var(--heading-font);
+  font-size: 3rem;
+  color: #f0c04015;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.step-card h2 {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+
+.step-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.howto-list {
+  list-style: none;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.howto-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* small coloured tags for each question type */
+.tag-mc,
+.tag-tf,
+.tag-fitb {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.tag-mc   { background: #f0c04020; color: var(--accent); border: 1px solid #f0c04030; }
+.tag-tf   { background: #e05c2a20; color: var(--accent-orange); border: 1px solid #e05c2a30; }
+.tag-fitb { background: #3ddc8420; color: var(--correct); border: 1px solid #3ddc8430; }
+
+/* =========================
+   Scoring Section
+========================= */
+
+.howto-scoring {
+  background: var(--surface);
+  border: 1px solid #ffffff0d;
+  border-radius: var(--radius);
+  padding: 2rem 1.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.howto-scoring h2 {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.scoring-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.8rem;
+}
+
+.score-tier {
+  border-radius: var(--small-radius);
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.s-gold   { background: #f0c04018; border: 1px solid #f0c04030; }
+.s-silver { background: #88888818; border: 1px solid #88888830; }
+.s-bronze { background: #e05c2a18; border: 1px solid #e05c2a30; }
+.s-try    { background: #ff4d6d12; border: 1px solid #ff4d6d25; }
+
+.s-pct   { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); }
+.s-label { font-size: 0.85rem; color: var(--text); }
+
+.howto-cta {
+  text-align: center;
+}
+
+/* =========================
+   Mobile / Responsive
+========================= */
+
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-card {
+    padding: 1.6rem 1.2rem;
+  }
+
+  .results-card {
+    padding: 2rem 1.2rem;
+  }
+
+  .hero-stats {
+    gap: 1rem;
+  }
+
+  .home-page .btn-ghost {
+    display: block;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+
+  .results-actions {
+    flex-direction: column;
+  }
+}
